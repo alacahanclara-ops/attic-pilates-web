@@ -1,0 +1,194 @@
+---
+type Clase = { tipo: string; estilo?: string; profe: string } | null;
+
+const horarios: Record<string, Record<string, Clase>> = {
+  '7:00':  { lun: null,                                        mar: {tipo:'Pilates',estilo:'clasico',profe:'Male'},   mie: null,                                          jue: {tipo:'Pilates',estilo:'clasico',profe:'Flor'},  vie: null,                                          sab: null },
+  '8:00':  { lun: {tipo:'Pilates',estilo:'contemp',profe:'Cami'},  mar: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},   mie: {tipo:'Pilates',estilo:'contemp',profe:'Nacho'}, jue: {tipo:'Pilates',estilo:'contemp',profe:'Flor'},  vie: {tipo:'Pilates',estilo:'contemp',profe:'Nacho'}, sab: null },
+  '9:00':  { lun: {tipo:'Pilates',estilo:'contemp',profe:'Cami'},  mar: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},   mie: {tipo:'Pilates',estilo:'contemp',profe:'Nacho'}, jue: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},  vie: {tipo:'Pilates',estilo:'contemp',profe:'Nacho'}, sab: {tipo:'Pilates',estilo:'contemp',profe:'Nacho'} },
+  '10:00': { lun: {tipo:'Pilates',estilo:'contemp',profe:'Cami'},  mar: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},   mie: {tipo:'Pilates',estilo:'contemp',profe:'Nacho'}, jue: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},  vie: {tipo:'Pilates',estilo:'contemp',profe:'Nacho'}, sab: {tipo:'Pilates',estilo:'contemp',profe:'Nacho'} },
+  '11:00': { lun: null,                                        mar: {tipo:'Cadillac',profe:'Lore'},                   mie: null,                                          jue: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},  vie: null,                                          sab: {tipo:'Pilates',estilo:'contemp',profe:'Eros'} },
+  '12:00': { lun: null,                                        mar: null,                                            mie: null,                                          jue: null,                                           vie: null,                                          sab: {tipo:'Pilates',estilo:'contemp',profe:'Eros'} },
+  '13:00': { lun: null,                                        mar: null,                                            mie: null,                                          jue: null,                                           vie: null,                                          sab: {tipo:'Pilates',estilo:'contemp',profe:'Eros'} },
+  '16:00': { lun: null,                                        mar: null,                                            mie: null,                                          jue: null,                                           vie: {tipo:'Cadillac',profe:'Cami'},                 sab: null },
+  '17:00': { lun: {tipo:'Pilates',estilo:'contemp',profe:'Nacho'}, mar: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},   mie: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},  jue: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},  vie: {tipo:'Pilates',estilo:'contemp',profe:'Cami'},  sab: null },
+  '18:00': { lun: {tipo:'Pilates',estilo:'contemp',profe:'Nacho'}, mar: {tipo:'Barre',profe:'Lore'},                      mie: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},  jue: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},  vie: {tipo:'Pilates',estilo:'contemp',profe:'Cami'},  sab: null },
+  '19:00': { lun: {tipo:'Pilates',estilo:'contemp',profe:'Nacho'}, mar: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},   mie: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},  jue: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},  vie: {tipo:'Pilates',estilo:'contemp',profe:'Cami'},  sab: null },
+  '20:00': { lun: {tipo:'Pilates',estilo:'clasico',profe:'Flor'},  mar: null,                                            mie: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},  jue: {tipo:'Pilates',estilo:'contemp',profe:'Lore'},  vie: {tipo:'Pilates',estilo:'clasico',profe:'Flor'},  sab: null },
+  '21:00': { lun: {tipo:'Pilates',estilo:'clasico',profe:'Flor'},  mar: null,                                            mie: null,                                          jue: null,                                           vie: null,                                          sab: null },
+};
+
+const dias = [
+  { key: 'lun', label: 'Lunes' },
+  { key: 'mar', label: 'Martes' },
+  { key: 'mie', label: 'Miércoles' },
+  { key: 'jue', label: 'Jueves' },
+  { key: 'vie', label: 'Viernes' },
+  { key: 'sab', label: 'Sábado' },
+];
+---
+
+<section class="section horarios" id="horarios">
+  <div class="container">
+    <div class="horarios-header">
+      <p class="subtitle">Planificá tu semana</p>
+      <h2>Horarios</h2>
+    </div>
+
+    <div class="leyenda">
+      <span class="leyenda-item is-contemp-leg"><span class="dot"></span>Contemporáneo</span>
+      <span class="leyenda-item is-clasico-leg"><span class="dot"></span>Clásico</span>
+      <span class="leyenda-item is-cadillac-leg"><span class="dot"></span>Cadillac</span>
+      <span class="leyenda-item is-barre-leg"><span class="dot"></span>Barre</span>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th class="th-hora"></th>
+            {dias.map(d => <th>{d.label}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(horarios).map(([hora, fila]) => (
+            <tr>
+              <td class="td-hora">{hora}</td>
+              {dias.map(d => {
+                const c = fila[d.key];
+                const cls = [
+                  'td-clase',
+                  c ? 'has-clase' : '',
+                  c?.tipo === 'Cadillac' ? 'is-cadillac' : '',
+                  c?.tipo === 'Barre'    ? 'is-barre'    : '',
+                  c?.estilo === 'clasico' ? 'is-clasico'  : '',
+                  c?.estilo === 'contemp' ? 'is-contemp'  : '',
+                ].filter(Boolean).join(' ');
+                return (
+                  <td class={cls}>
+                    {c && (
+                      <span class="clase-info">
+                        <span class="clase-tipo">{c.tipo}</span>
+                        <span class="clase-profe">{c.profe}</span>
+                      </span>
+                    )}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .horarios-header {
+    text-align: center;
+    margin-bottom: var(--space-sm);
+  }
+
+  /* ── LEYENDA ── */
+  .leyenda {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .leyenda-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--color-taupe);
+    letter-spacing: 0.04em;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  .is-contemp-leg .dot  { background: rgba(45, 41, 38, 0.15); }
+  .is-clasico-leg .dot  { background: rgba(90, 145, 100, 0.45); }
+  .is-cadillac-leg .dot { background: rgba(140, 130, 195, 0.5); }
+  .is-barre-leg .dot    { background: rgba(182, 168, 154, 0.55); border: 1px solid rgba(182, 168, 154, 0.6); }
+
+  /* ── TABLA ── */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabla {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 560px;
+    font-size: 0.75rem;
+  }
+
+  .tabla thead th {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-taupe);
+    padding: 0 0.25rem 0.6rem;
+    text-align: center;
+  }
+
+  .th-hora { width: 48px; }
+
+  .tabla tbody tr:not(:last-child) td {
+    border-bottom: 1px solid rgba(45, 41, 38, 0.05);
+  }
+
+  .td-hora {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--color-taupe);
+    padding: 0.25rem 0.5rem 0.25rem 0;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .td-clase {
+    padding: 0.2rem;
+    text-align: center;
+    vertical-align: middle;
+    height: 40px;
+  }
+
+  .clase-info {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 6px;
+    padding: 0.25rem 0.4rem;
+    width: 100%;
+    max-width: 90px;
+    gap: 1px;
+  }
+
+  /* Colores por estilo */
+  .is-contemp  .clase-info { background: rgba(45, 41, 38, 0.08); }
+  .is-clasico  .clase-info { background: rgba(90, 145, 100, 0.28); }
+  .is-cadillac .clase-info { background: rgba(140, 130, 195, 0.28); }
+  .is-barre    .clase-info { background: rgba(182, 168, 154, 0.3); border: 1px solid rgba(182, 168, 154, 0.45); }
+
+  .clase-tipo {
+    font-weight: 600;
+    color: var(--color-dark);
+    font-size: 0.68rem;
+  }
+
+  .clase-profe {
+    font-size: 0.6rem;
+    color: var(--color-taupe);
+  }
+</style>
