@@ -1,0 +1,15 @@
+{
+  "name": "attic-pilates",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.100.0",
+    "astro": "^6.0.8"
+  }
+}
