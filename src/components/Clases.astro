@@ -1,0 +1,217 @@
+---
+const BASE = import.meta.env.BASE_URL;
+---
+
+<section class="section clases" id="clases">
+  <div class="container">
+    <div class="clases-header">
+      <p class="subtitle">Nuestras disciplinas</p>
+      <h2>Elegí tu experiencia</h2>
+    </div>
+
+    <!-- PILATES — sección principal con 2 variantes -->
+    <div class="pilates-block">
+      <div class="pilates-intro">
+        <span class="clase-number">01</span>
+        <h3>Pilates</h3>
+        <p class="pilates-lead">Clases de máximo 8 personas, pensadas para acompañarte de forma personalizada y adaptadas a todos los niveles.</p>
+      </div>
+      <div class="pilates-variantes">
+        <div class="variante">
+          <span class="variante-tag">Clásico</span>
+          <p>Basado en la técnica original de Contrología de Joseph Pilates. Con movimientos precisos y controlados, buscamos una experiencia auténtica y transformadora, promoviendo equilibrio, alineación, fuerza y flexibilidad.</p>
+        </div>
+        <div class="variante-divider"></div>
+        <div class="variante">
+          <span class="variante-tag">Contemporáneo</span>
+          <p>Una evolución del método original que incorpora biomecánica moderna y principios de fisioterapia. Las clases se adaptan a las necesidades y objetivos de cada persona, con una amplia variedad de accesorios. Ideal para mejorar movilidad, fuerza, postura y bienestar general.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CADILLAC · BARRE · YOGA -->
+    <div class="otras-grid">
+
+      <div class="clase-card">
+        <div class="clase-body">
+          <span class="clase-number">02</span>
+          <h3>Cadillac personalizado</h3>
+          <p>Clases semi personalizadas de hasta 2 personas, orientadas a un trabajo más específico y desafiante. Utilizando el Cadillac, exploramos ejercicios avanzados, figuras aéreas y movimientos que desarrollan fuerza, control, coordinación y confianza corporal.</p>
+        </div>
+      </div>
+
+      <div class="clase-card">
+        <div class="clase-body">
+          <span class="clase-number">03</span>
+          <h3>Barre</h3>
+          <p>Una disciplina inspirada en ballet, pilates y entrenamiento funcional. Combina movimientos intensos de bajo impacto que ayudan a fortalecer y tonificar el cuerpo, mejorar la postura, la estabilidad y la elongación muscular, generando una sensación de energía y bienestar.</p>
+        </div>
+      </div>
+
+      <div class="clase-card">
+        <div class="clase-body">
+          <span class="clase-number">04</span>
+          <h3>Yoga</h3>
+          <p>Prácticas en nuestra terraza que combinan movimiento, respiración y conciencia corporal para conectar con el cuerpo y calmar la mente.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .clases-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+  .clases-header .subtitle { justify-content: center; }
+  .clases-header .subtitle::before { display: none; }
+
+  /* ── PILATES BLOCK ── */
+  .pilates-block {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    grid-template-rows: 1fr auto;
+    border: 1px solid rgba(45,41,38,.1);
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+    border-bottom: none;
+  }
+
+  .pilates-intro {
+    grid-column: 1;
+    grid-row: 1;
+    padding: var(--space-lg);
+    border-right: 1px solid rgba(45,41,38,.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pilates-intro h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--color-dark);
+  }
+
+  .pilates-variantes {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .variante {
+    flex: 1;
+    padding: var(--space-lg);
+  }
+  .variante:first-child {
+    border-bottom: 1px solid rgba(45,41,38,.08);
+  }
+
+  .variante-divider { display: none; }
+
+  .variante-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-taupe);
+    border: 1px solid rgba(182,168,154,.45);
+    border-radius: 100px;
+    padding: 0.22rem 0.8rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .variante p { font-size: 0.83rem; line-height: 1.7; }
+
+  .pilates-cta {
+    grid-column: 1;
+    grid-row: 2;
+    padding: var(--space-md) var(--space-lg);
+    border-top: 1px solid rgba(45,41,38,.08);
+    border-right: 1px solid rgba(45,41,38,.1);
+  }
+
+  /* ── OTRAS 3 ── */
+  .otras-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    border: 1px solid rgba(45,41,38,.1);
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+    border-top: 1px solid rgba(45,41,38,.1);
+  }
+
+  .clase-card {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(45,41,38,.1);
+    transition: background .2s;
+  }
+  .clase-card:last-child { border-right: none; }
+  .clase-card:hover { background: rgba(45,41,38,.02); }
+
+
+  .clase-body {
+    padding: var(--space-lg);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .clase-number {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--color-taupe);
+    display: block;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.05em;
+  }
+
+  .clase-card h3 { font-size: 1.15rem; font-weight: 500; margin-bottom: 0.5rem; }
+  .clase-card p, .pilates-lead {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: var(--space-sm);
+  }
+
+  .clase-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-dark);
+    text-decoration: none;
+    transition: gap .2s;
+    margin-top: auto;
+  }
+  .clase-link:hover { gap: 0.75rem; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .pilates-block {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+      border-radius: 20px 20px 0 0;
+    }
+    .pilates-intro {
+      grid-column: 1; grid-row: 1;
+      border-right: none;
+      border-bottom: 1px solid rgba(45,41,38,.1);
+    }
+    .pilates-variantes { grid-column: 1; grid-row: 2; }
+    .pilates-cta {
+      grid-column: 1; grid-row: 3;
+      border-right: none;
+    }
+    .otras-grid { grid-template-columns: 1fr; border-radius: 0 0 20px 20px; }
+    .clase-card { border-right: none; border-bottom: 1px solid rgba(45,41,38,.1); }
+    .clase-card:last-child { border-bottom: none; }
+  }
+</style>
