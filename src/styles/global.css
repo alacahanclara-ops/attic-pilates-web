@@ -1,0 +1,195 @@
+﻿/* ===== ATTIC PILATES — Global Styles ===== */
+
+/* Tipografía Garet (Fontshare) — la pidieron en el discovery */
+@import url('https://api.fontshare.com/v2/css?f[]=garet@300,400,500,600,700,800&display=swap');
+
+:root {
+  /* Paleta oficial Attic Pilates */
+  --color-cream:       #F2EFE6;
+  --color-taupe:       #B6A89A;
+  --color-light-gray:  #E8E5DC;
+  --color-dark:        #2D2926;
+  --color-dark-green:  #333C24;
+
+  /* Aliases funcionales */
+  --color-bg:          var(--color-cream);
+  --color-bg-alt:      var(--color-cream);
+  --color-text:        var(--color-dark);
+  --color-text-soft:   #6B6460;
+  --color-accent:      var(--color-dark);
+  --color-accent-soft: var(--color-taupe);
+  --color-white:       #FFFFFF;
+
+  /* Tipografía */
+  --font-sans: 'Garet', 'Outfit', sans-serif;
+
+  /* Espaciado */
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  1.5rem;
+  --space-lg:  2rem;
+  --space-xl:  3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 5rem;
+
+  /* Layout */
+  --max-width:       1200px;
+  --border-radius:   12px;
+  --border-radius-lg: 20px;
+
+  /* Transiciones */
+  --transition:      0.25s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Aliases de compatibilidad — mapean vars viejas a tokens de marca */
+  --font-heading:     var(--font-sans);
+  --font-body:        var(--font-sans);
+  --color-cream-light: var(--color-bg-alt);
+  --color-beige:      rgba(45, 41, 38, 0.1);
+  --color-gold:       var(--color-dark);
+  --color-gold-light: var(--color-taupe);
+  --color-sage:       var(--color-taupe);
+  --color-sage-light: var(--color-taupe);
+  --color-rose:       var(--color-taupe);
+  --color-dark-soft:  var(--color-text-soft);
+  --color-gray:       var(--color-taupe);
+}
+
+/* Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--color-dark);
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 4rem);   font-weight: 600; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.75rem); }
+h3 { font-size: clamp(1.15rem, 2vw, 1.5rem); }
+
+p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-text-soft);
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul { list-style: none; }
+
+/* Container */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-dark-green);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-dark);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--color-dark);
+  color: var(--color-dark);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-dark);
+  color: var(--color-cream);
+  transform: translateY(-2px);
+}
+
+/* Section spacing */
+.section {
+  padding: var(--space-xl) 0;
+}
+
+/* Eyebrow / overline label */
+.subtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-taupe);
+  margin-bottom: var(--space-sm);
+}
+
+.subtitle::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background-color: var(--color-taupe);
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  html { font-size: 15px; }
+
+  .section {
+    padding: var(--space-lg) 0;
+  }
+
+  .container {
+    padding: 0 var(--space-sm);
+  }
+}
