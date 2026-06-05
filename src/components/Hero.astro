@@ -1,0 +1,169 @@
+﻿---
+const base = import.meta.env.BASE_URL;
+
+const reelFrames = [
+  { src: `${base}photos/p01.jpg`, position: 'center 30%' },
+  { src: `${base}photos/p03.jpg`, position: 'center 40%' },
+  { src: `${base}photos/p04.jpg`, position: 'center 35%' },
+  { src: `${base}photos/p06.jpg`, position: 'center 45%' },
+  { src: `${base}photos/p02.jpg`, position: 'center 40%' },
+  { src: `${base}photos/p05.jpg`, position: 'center 30%' },
+];
+---
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    {reelFrames.map((f, i) => (
+      <div class={`frame f${i + 1}`} style={`background-image: url('${f.src}'); background-position: ${f.position};`}></div>
+    ))}
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content container">
+    <div class="hero-text">
+      <p class="hero-location">Palermo Soho, Buenos Aires</p>
+      <h1>Transformá tu cuerpo, encontrá tu <em>equilibrio</em></h1>
+      <p class="hero-desc">
+        Reformer &middot; Cadillac &middot; Barre
+      </p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/5491171451598" target="_blank" rel="noopener" class="btn btn-primary">
+          Reservá tu clase
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#clases" class="btn btn-outline">Conocé más</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .frame {
+    position: absolute;
+    inset: -8%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    filter: blur(1px);
+    animation: reelCycle 24s infinite;
+    will-change: opacity, transform;
+  }
+
+  .frame.f1 { animation-delay: 0s; }
+  .frame.f2 { animation-delay: -4s; }
+  .frame.f3 { animation-delay: -8s; }
+  .frame.f4 { animation-delay: -12s; }
+  .frame.f5 { animation-delay: -16s; }
+  .frame.f6 { animation-delay: -20s; }
+
+  @keyframes reelCycle {
+    0%    { opacity: 0; transform: scale(1.06); }
+    3%    { opacity: 1; }
+    16.6% { opacity: 1; transform: scale(1.18); }
+    19.6% { opacity: 0; }
+    100%  { opacity: 0; transform: scale(1.18); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(242, 239, 230, 0.90) 0%,
+      rgba(242, 239, 230, 0.78) 35%,
+      rgba(242, 239, 230, 0.50) 70%,
+      rgba(242, 239, 230, 0.30) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 6rem;
+  }
+
+  .hero-text {
+    max-width: 600px;
+  }
+
+  .hero-location {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-taupe);
+    margin-bottom: var(--space-sm);
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+    margin-bottom: var(--space-md);
+    color: var(--color-dark);
+  }
+
+  h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-dark);
+  }
+
+  .hero-desc {
+    font-size: 1.25rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--color-dark-soft);
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-buttons .btn {
+    font-size: 0.95rem;
+    padding: 0.85rem 1.75rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 90vh;
+    }
+
+    .hero-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(242, 239, 230, 0.95) 0%,
+        rgba(242, 239, 230, 0.88) 50%,
+        rgba(242, 239, 230, 0.65) 100%
+      );
+    }
+
+    .hero-content {
+      padding-top: 7rem;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+      text-align: center;
+      justify-content: center;
+    }
+  }
+</style>
