@@ -1,4 +1,4 @@
-﻿---
+---
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -31,7 +31,7 @@ const base = import.meta.env.BASE_URL;
     <ul class="navbar-links">
       <li><a href="#clases">Clases</a></li>
       <li><a href="#horarios">Horarios</a></li>
-      <li><a href="#precios">Packs</a></li>
+      <li><a href="#precios">Precios</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#ubicacion">Ubicación</a></li>
     </ul>
@@ -58,7 +58,7 @@ const base = import.meta.env.BASE_URL;
     <ul>
       <li><a href="#clases">Clases</a></li>
       <li><a href="#horarios">Horarios</a></li>
-      <li><a href="#precios">Packs</a></li>
+      <li><a href="#precios">Precios</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#ubicacion">Ubicación</a></li>
       <li><a href="https://wa.me/5491171451598" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 1rem; justify-content: center;">Reservar</a></li>
@@ -196,17 +196,20 @@ const base = import.meta.env.BASE_URL;
   .mobile-menu {
     display: none;
     position: fixed;
-    top: 65px;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--color-bg);
+    background: var(--color-cream);
     padding: var(--space-lg);
-    z-index: 999;
+    padding-top: 90px;
+    z-index: 998;
+    overflow-y: auto;
   }
 
   .mobile-menu.open {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
 
   .mobile-menu ul {
