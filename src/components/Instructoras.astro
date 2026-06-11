@@ -172,28 +172,33 @@ const instructores = [
     }
   }
 
-  @media (max-width: 560px) {
+  @media (max-width: 768px) {
     .profes-grid {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: row;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
       gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .profes-grid::-webkit-scrollbar {
+      display: none;
     }
 
     .profe-card {
-      flex-direction: row;
-      text-align: left;
-      align-items: flex-start;
-      gap: var(--space-md);
-      padding: var(--space-md);
+      flex: 0 0 82%;
+      scroll-snap-align: start;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
     }
 
     .profe-foto {
-      width: 64px;
-      height: 64px;
-      margin-bottom: 0;
-    }
-
-    .profe-inicial {
-      font-size: 1.4rem;
+      width: 80px;
+      height: 80px;
     }
   }
 </style>
