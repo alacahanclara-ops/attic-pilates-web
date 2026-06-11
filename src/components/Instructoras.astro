@@ -166,7 +166,7 @@ const instructores = [
     text-align: left;
   }
 
-  @media (max-width: 900px) {
+  @media (min-width: 769px) and (max-width: 900px) {
     .profes-grid {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -174,12 +174,12 @@ const instructores = [
 
   @media (max-width: 768px) {
     .profes-grid {
-      display: flex;
+      display: flex !important;
       flex-direction: row;
       overflow-x: scroll;
       scroll-snap-type: x mandatory;
-      gap: var(--space-md);
-      padding-bottom: var(--space-md);
+      gap: 1rem;
+      padding-bottom: 1rem;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
     }
@@ -190,8 +190,9 @@ const instructores = [
 
     .profe-card {
       flex: 0 0 82%;
+      min-width: 0;
       scroll-snap-align: start;
-      flex-direction: column;
+      flex-direction: column !important;
       text-align: center;
       align-items: center;
     }
@@ -199,6 +200,7 @@ const instructores = [
     .profe-foto {
       width: 80px;
       height: 80px;
+      margin-bottom: var(--space-md);
     }
   }
 </style>
